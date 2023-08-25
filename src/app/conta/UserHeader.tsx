@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserHeaderNav from './UserHeaderNav';
 import styles from './UserHeader.module.css';
-// import { useLocation } from 'react-router-dom';
 import { useRouter, usePathname  } from 'next/navigation'
 
 const UserHeader = () => {

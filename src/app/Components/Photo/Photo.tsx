@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-// import { useParams } from 'react-router-dom'
-import { useRouter } from 'next/router';
+
 import useFetch from '../../Hooks/useFetch';
 import { PHOTO_GET } from '../../api';
 import Error from '../Helper/Error'
@@ -9,8 +8,6 @@ import PhotoContent from './PhotoContent'
 
 const Photo = ({id} : {id: string}) => {
 
-  // const router = useRouter();
-  // const { id } = router.query;
 
   const { data, error, loading, request } = useFetch();
 

@@ -7,8 +7,8 @@ import PostarFoto from '../assets/adicionar.svg'
 import  Sair from '../assets/sair.svg'
 import styles from './UserHeaderNav.module.css';
 import useMedia from '../Hooks/useMedia'
-import Image from 'next/image'
-import { useRouter, usePathname  } from 'next/navigation'
+
+import {  usePathname  } from 'next/navigation'
 import Link from 'next/link'
 
  

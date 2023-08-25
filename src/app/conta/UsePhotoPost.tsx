@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './UsePhotoPost.module.css'
-// import Input from '../Form/Input';
 import Input from '../Components/Form/Input';
 import Button from '../Components/Form/Button';
 import useForm from '../Hooks/useForm';
 import useFetch from '../Hooks/useFetch';
 import Error from '../Components/Helper/Error';
 import { PHOTO_POST } from '../api';
-import { useRouter, usePathname  } from 'next/navigation'
-import { File } from 'buffer';
-// import { useNavigate } from 'react-router-dom';
+import { useRouter  } from 'next/navigation'
+
 
 
 type IImg = {
@@ -47,13 +45,13 @@ const UsePhotoPost = () => {
 
     const token = window.localStorage.getItem('token');
 
-    const {url, options} = PHOTO_POST(formData, token);
+    if(token){
 
-    request(url, options);
+      const {url, options} = PHOTO_POST(formData, token);
 
-    // console.log(data);
+      request(url, options);
+    }
 
-    
     
   }
 
