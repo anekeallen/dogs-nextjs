@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { useContext } from 'react'
+import React from 'react';
+
 // import { Navigate, Route, Routes } from 'react-router-dom';
 // import Error404 from '../Error404';
-import LoginCreate from './criar/page';
+// import LoginCreate from './criar/page';
+import styles from './Login.module.css';
 import LoginForm from './LoginForm';
-import LoginPasswordLost from './perdeu/page';
-import LoginPasswordReset from './resetar/page';
-import { UserContext } from '../UserContext';
-import styles from "./Login.module.css";
+// import LoginPasswordLost from './perdeu/page';
+// import LoginPasswordReset from './resetar/page';
+// import { UserContext } from '../UserContext';
 
 const Login = () => {
-
-  const { login } = useContext(UserContext);
+  // const { login } = useContext(UserContext);
 
   // console.log(login);
 
@@ -20,10 +20,8 @@ const Login = () => {
 
   return (
     <section className={styles.login}>
-
       <div className={styles.forms}>
-
-      <LoginForm />
+        <LoginForm />
         {/* <Routes>
           <Route path='/' element={<LoginForm />} />
           <Route path='/criar' element={<LoginCreate />} />
@@ -33,7 +31,7 @@ const Login = () => {
         </Routes> */}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

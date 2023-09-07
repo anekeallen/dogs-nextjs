@@ -1,44 +1,40 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Rubik } from 'next/font/google'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
-import { UserStorage } from './UserContext'
+import './globals.css';
+import type { Metadata } from 'next';
+import { Rubik } from 'next/font/google';
+
+import Footer from './Components/Footer';
+import Header from './Components/Header';
+import { UserStorage } from './UserContext';
 // import { useRouter } from 'next/router';
 
-const rubik = Rubik({ 
+const rubik = Rubik({
   subsets: ['latin'],
-  display: 'swap',
-})
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   title: 'Dogs',
-  description: '',
-}
+  description: ''
+};
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-
   // const router = useRouter();
-
 
   return (
     <UserStorage>
       <html lang="pt-BR">
         <body className={rubik.className}>
           <Header />
- 
+
           {children}
-        
-     
 
           <Footer />
-          </body>
+        </body>
       </html>
-        </UserStorage>
-  
-  )
+    </UserStorage>
+  );
 }

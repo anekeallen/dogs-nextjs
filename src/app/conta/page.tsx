@@ -1,24 +1,22 @@
-'use client'
-import React from 'react'
-import { UserContext } from '../UserContext'
-import Feed from '../Components/Feed/Feed'
-import UserHeader from './UserHeader'
+'use client';
 import { redirect } from 'next/navigation';
+import React from 'react';
 
-
+import Feed from '../Components/Feed/Feed';
+import { UserContext } from '../UserContext';
+import UserHeader from './UserHeader';
 
 const Conta = () => {
   const { data } = React.useContext(UserContext);
 
+  if (data === null) redirect('/');
 
-  if(data === null) redirect('/');
-  
   return (
-    <section className='container'>
+    <section className="container">
       <UserHeader />
       <Feed user={data.id} />
     </section>
-  )
-}
+  );
+};
 
-export default Conta
+export default Conta;

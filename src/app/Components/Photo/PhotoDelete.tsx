@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import { PHOTO_DELETE } from '../../api';
 import useFetch from '../../Hooks/useFetch';
 import styles from './PhotoDelete.module.css';
@@ -8,7 +9,7 @@ interface PhotoDeleteProps {
 }
 
 const PhotoDelete: React.FC<PhotoDeleteProps> = ({ id }) => {
-  const { loading, data, error, request } = useFetch();
+  const { loading, request } = useFetch();
 
   async function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -18,7 +19,7 @@ const PhotoDelete: React.FC<PhotoDeleteProps> = ({ id }) => {
     if (confirm) {
       const { url, options } = PHOTO_DELETE(id);
 
-      const { response, json } = await request(url, options);
+      const { response } = await request(url, options);
 
       if (response && response.ok) {
         window.location.reload();
@@ -28,13 +29,19 @@ const PhotoDelete: React.FC<PhotoDeleteProps> = ({ id }) => {
     // console.log(response);
   }
 
-
   return (
     <>
-      {loading ? <button className={styles.delete} disabled>Deletar</button> : <button onClick={handleClick} className={styles.delete}>Deletar</button>}
-
+      {loading ? (
+        <button className={styles.delete} disabled>
+          Deletar
+        </button>
+      ) : (
+        <button onClick={handleClick} className={styles.delete}>
+          Deletar
+        </button>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default PhotoDelete
+export default PhotoDelete;

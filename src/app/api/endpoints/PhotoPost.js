@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const PhotoPost = () => {
   const [token, setToken] = React.useState('');
   const [nome, setNome] = React.useState('');
@@ -21,9 +20,9 @@ const PhotoPost = () => {
     fetch(`http://dogsapi.test/json/api/photo`, {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + token,
+        Authorization: 'Bearer ' + token
       },
-      body: formData,
+      body: formData
     })
       .then((response) => {
         console.log(response);

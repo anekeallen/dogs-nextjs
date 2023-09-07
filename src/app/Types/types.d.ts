@@ -1,14 +1,14 @@
-interface Photo{
+interface Photo {
   id: number;
-  author: string,
-  title: string,
-  date: string,
-  src: string,
-  peso: string,
-  idade: string,
-  acessos: string,
-  total_comments: string,
-  prevState: null
+  author: string;
+  title: string;
+  date: string;
+  src: string;
+  peso: string;
+  idade: string;
+  acessos: string;
+  total_comments: string;
+  prevState: null;
 }
 
 interface Comment {
@@ -30,10 +30,10 @@ interface Comment {
 }
 
 type ReturnFunctionGet = {
-  url: string; 
-  options: RequestInit
-}
+  url: string;
+  options: RequestInit;
+};
 
 type SetModal = Dispatch<SetStateAction<Photo | null>>;
 type SetInfinite = Dispatch<SetStateAction<boolean>>;
-type DataContent = {photo: Photo; comments: Comment[]};
+type DataContent = { photo: Photo; comments: Comment[] };

@@ -1,4 +1,4 @@
-export const API_URL = 'http://dogsapi.test/wp-json';
+export const API_URL = 'http://dogsapi.test/json';
 
 export function TOKEN_POST(body: BodyInit): ReturnFunctionGet {
   return {
@@ -6,22 +6,21 @@ export function TOKEN_POST(body: BodyInit): ReturnFunctionGet {
     options: {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(body)
-    },
+    }
   };
 }
-export function TOKEN_VALIDATE_POST(token:string): ReturnFunctionGet {
+export function TOKEN_VALIDATE_POST(token: string): ReturnFunctionGet {
   return {
     url: API_URL + '/jwt-auth/v1/token/validate',
     options: {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + token,
-      },
-
-    },
+        Authorization: 'Bearer ' + token
+      }
+    }
   };
 }
 export function USER_GET(token: string): ReturnFunctionGet {
@@ -30,10 +29,9 @@ export function USER_GET(token: string): ReturnFunctionGet {
     options: {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + token,
-      },
-
-    },
+        Authorization: 'Bearer ' + token
+      }
+    }
   };
 }
 export function USER_POST(body: BodyInit): ReturnFunctionGet {
@@ -42,111 +40,109 @@ export function USER_POST(body: BodyInit): ReturnFunctionGet {
     options: {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(body)
-
-    },
+    }
   };
 }
 
-export function PHOTO_POST(formData: BodyInit | null | undefined, token: string): ReturnFunctionGet {
+export function PHOTO_POST(
+  formData: BodyInit | null | undefined,
+  token: string
+): ReturnFunctionGet {
   return {
-    url: API_URL + '/api/photo',
+    url: API_URL + '/api/pho to',
     options: {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + token,
+        Authorization: 'Bearer ' + token
       },
-      body: formData,
-
-    },
+      body: formData
+    }
   };
 }
 
-export function PHOTOS_GET({ page, total, user }: {page: number; total: number; user: number | string}): ReturnFunctionGet {
+export function PHOTOS_GET({
+  page,
+  total,
+  user
+}: {
+  page: number;
+  total: number;
+  user: number | string;
+}): ReturnFunctionGet {
   return {
     url: API_URL + `/api/photo/?_page=${page}&_total=${total}&_user=${user}`,
     options: {
       method: 'GET',
       cache: 'no-store'
-
-    },
+    }
   };
 }
 
-export function PHOTO_GET(id: number | string  | string[]): ReturnFunctionGet {
+export function PHOTO_GET(id: number | string | string[]): ReturnFunctionGet {
   return {
     url: API_URL + `/api/photo/${id}`,
     options: {
       method: 'GET',
       cache: 'no-store'
-
-    },
+    }
   };
 }
 
-export function PHOTO_DELETE(id: number | string | string[]): ReturnFunctionGet {
+export function PHOTO_DELETE(
+  id: number | string | string[]
+): ReturnFunctionGet {
   return {
     url: API_URL + `/api/photo/${id}`,
     options: {
       method: 'DELETE',
       headers: {
-
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
-      },
-
-
-    },
-
+        Authorization: 'Bearer ' + window.localStorage.getItem('token')
+      }
+    }
   };
 }
 
-export function COMMENT_POST(id:number | string | string[], body: BodyInit): ReturnFunctionGet {
+export function COMMENT_POST(
+  id: number | string | string[],
+  body: BodyInit
+): ReturnFunctionGet {
   return {
     url: API_URL + `/api/comment/${id}`,
     options: {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+        Authorization: 'Bearer ' + window.localStorage.getItem('token')
       },
-      body: JSON.stringify(body),
-
-    },
-
+      body: JSON.stringify(body)
+    }
   };
 }
 
-export function PASSWORD_LOST(body: BodyInit): ReturnFunctionGet {
-
+export function PASSWORD_LOST(body: BodyInit | string): ReturnFunctionGet {
   return {
     url: API_URL + `/api/password/lost`,
     options: {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body),
-
+      body: JSON.stringify(body)
     }
-  }
-
+  };
 }
 export function PASSWORD_RESET(body: BodyInit): ReturnFunctionGet {
-
   return {
     url: API_URL + `/api/password/reset`,
     options: {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body),
-
+      body: JSON.stringify(body)
     }
-  }
-
+  };
 }

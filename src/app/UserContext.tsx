@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
 // import React from 'react'
 import React, { createContext, useState, useEffect, useCallback } from 'react';
+
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from './api';
 // import { useRouter } from 'next/router';
 // import  useNavigation  from 'next/navigation';
@@ -36,7 +37,7 @@ export const UserContext = createContext<UserContextValue>({
   data: null,
   error: null,
   login: null,
-  loading: false,
+  loading: false
 });
 
 // Definindo as propriedades do componente UserStorage
@@ -44,9 +45,7 @@ type UserStorageProps = {
   children: React.ReactNode;
 };
 
-
-export const UserStorage: React.FC<UserStorageProps> = ({children}) => {
-
+export const UserStorage: React.FC<UserStorageProps> = ({ children }) => {
   const [data, setData] = useState<UserData | null>(null);
   const [login, setLogin] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(false);
@@ -64,7 +63,6 @@ export const UserStorage: React.FC<UserStorageProps> = ({children}) => {
     // Redirecionar o usuário para a página de login após o logout
     // router.push('/login');
     // navigation.navigate('/login')
-    
   }, []);
 
   useEffect(() => {
@@ -93,13 +91,13 @@ export const UserStorage: React.FC<UserStorageProps> = ({children}) => {
 
     autoLogin();
   }, [userLogout]);
- 
+
   // Função para obter os dados do usuário a partir do token
   async function getUser(token: string) {
     const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
     const response_json = await response.json();
-    
+
     setData(response_json);
     setLogin(true);
   }
@@ -128,10 +126,10 @@ export const UserStorage: React.FC<UserStorageProps> = ({children}) => {
 
       // navigate('/conta');
     } catch (error) {
-      if(error instanceof Error){
-        setError( error.message);
+      if (error instanceof Error) {
+        setError(error.message);
       }
-  
+
       setLogin(false);
     } finally {
       setLoading(false);
@@ -139,9 +137,10 @@ export const UserStorage: React.FC<UserStorageProps> = ({children}) => {
   }
 
   return (
-    <UserContext.Provider value={{ userLogin, userLogout, data, error, login, loading }}>
-    {children}
-  </UserContext.Provider>
-  )
-}
-
+    <UserContext.Provider
+      value={{ userLogin, userLogout, data, error, login, loading }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+};

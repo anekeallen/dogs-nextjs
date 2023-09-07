@@ -1,10 +1,9 @@
-import React from 'react'
-import styles from './Loading.module.css'
+import React from 'react';
+
+import styles from './Loading.module.css';
 
 const Loading = () => {
-
   const [step, setStep] = React.useState(0);
-
 
   React.useEffect(() => {
     function updateStep() {
@@ -21,7 +20,7 @@ const Loading = () => {
 
   function displayStep(i: number) {
     return {
-      display: step === i ? 'block' : 'none',
+      display: step === i ? 'block' : 'none'
     };
   }
   return (
@@ -103,13 +102,9 @@ const Loading = () => {
             />
           </g>
         </svg>
-
       </div>
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;
