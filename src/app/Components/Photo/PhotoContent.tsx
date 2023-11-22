@@ -1,7 +1,12 @@
+import { RootState } from '@/app/store/configureStore';
+import { useAppDispatch } from '@/app/store/hooks';
+import { fetchPhoto } from '@/app/store/photo';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import { UserContext } from '../../UserContext';
 import Image from '../Helper/Imagem';
 import PhotoComments from './PhotoComments';
@@ -9,14 +14,21 @@ import styles from './PhotoContent.module.css';
 import PhotoDelete from './PhotoDelete';
 
 const PhotoContent = ({
-  data,
+  // data,
   single
 }: {
-  data: DataContent;
+  // data: DataContent;
   single?: boolean | undefined;
 }) => {
-  const user = React.useContext(UserContext);
-  const { photo, comments } = data;
+  const user = useSelector((state: RootState) => state.user);
+  // const { photo, comments } = data;
+  const dispatch = useAppDispatch();
+
+  const { photo, comments } = useSelector(
+    (state: RootState) => state.photo.data
+  );
+
+  // const dispatch = useDispatch();
 
   return (
     <div className={`${styles.photo} ${single ? styles.single : ''}`}>

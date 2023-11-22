@@ -1,4 +1,6 @@
+import { RootState } from '@/app/store/configureStore';
 import React, { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { UserContext } from '../../UserContext';
 import styles from './PhotoComments.module.css';
@@ -12,7 +14,8 @@ interface PhotoCommentsProps {
 
 const PhotoComments = (props: PhotoCommentsProps) => {
   const [comments, setComments] = useState(() => props.comments);
-  const { login } = React.useContext(UserContext);
+
+  const { data } = useSelector((state: RootState) => state.user);
   // const commentsSection = useRef(null);
   const commentsSection = useRef<HTMLUListElement>(null);
 
@@ -35,7 +38,7 @@ const PhotoComments = (props: PhotoCommentsProps) => {
           </li>
         ))}
       </ul>
-      {login && (
+      {data && (
         <PhotoCommentsForm
           single={props.single}
           setComments={setComments}

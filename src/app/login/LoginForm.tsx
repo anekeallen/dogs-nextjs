@@ -2,13 +2,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '../Components/Form/Button';
 import stylesbtn from '../Components/Form/Button.module.css';
 import Input from '../Components/Form/Input';
 import Error from '../Components/Helper/Error';
 import useForm from '../Hooks/useForm';
-import { UserContext } from '../UserContext';
+import { RootState } from '../store/configureStore';
+import { useAppDispatch } from '../store/hooks';
+import { userLogin } from '../store/user';
 import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
@@ -16,30 +19,40 @@ const LoginForm = () => {
   const password = useForm('');
   const router = useRouter();
 
-  const { userLogin, error, loading, login } = React.useContext(UserContext);
+  const { data } = useSelector((state: RootState) => state.user);
 
-  // const usuario = React.useContext(UserContext);
+  const { token, user } = useSelector((state: RootState) => state);
+
+  const loading = token.loading || user.loading;
+  const error = token.error || user.error;
+
+  const dispatch = useAppDispatch();
+  // console.log(algo);
 
   // console.log(userLogin);
 
   useEffect(() => {
-    if (login) {
+    if (data) {
       router.push('/conta');
     }
-  }, [router, login]);
+  }, [router, data]);
 
   async function handleSubmit(e: React.FormEvent) {
     // console.log("Submit")
     e.preventDefault();
 
-    // console.log(username)
-    // console.log(password.validate())
-    // console.log(username.validate())
-
     if (username.validate() && password.validate()) {
-      userLogin(username.value, password.value);
+      console.log(
+        dispatch(
+          userLogin({ username: username.value, password: password.value })
+        )
+      );
     }
   }
+
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
     <section className="animeLeft">

@@ -37,8 +37,11 @@
         "order": "asc", 
         "ignoreCase": true } } ],
 
-      "no-unsafe-finally": "off"
+      "no-unsafe-finally": "off",
+      "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off"
       
     
   }
+
 }

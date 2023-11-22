@@ -1,17 +1,16 @@
+import { useAppDispatch } from '@/app/store/hooks';
+import { fetchPhoto } from '@/app/store/photo';
+import { openModal } from '@/app/store/ui';
 import React from 'react';
 
 import Image from '../Helper/Imagem';
 import styles from './FeedPhotosItem.module.css';
 
-const FeedPhotosItem = ({
-  photo,
-  setModalPhoto
-}: {
-  photo: Photo;
-  setModalPhoto: SetModal;
-}) => {
+const FeedPhotosItem = ({ photo }: { photo: Photo }) => {
+  const dispatch = useAppDispatch();
   function handleClick() {
-    setModalPhoto(photo);
+    dispatch(fetchPhoto(photo.id.toString()));
+    dispatch(openModal());
   }
 
   return (

@@ -1,14 +1,23 @@
 'use client';
 
+import { autoLogin } from '@/app/store/user';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import FeedModal from './FeedModal';
 import FeedPhotos from './FeedPhotos';
 
 const Feed = ({ user = 0 }: { user?: number | string }) => {
-  const [modalPhoto, setModalPhoto] = useState<Photo | null>(null);
+  // const [modalPhoto, setModalPhoto] = useState<Photo | null>(null);
+
   const [pages, setPages] = useState([1]);
   const [infinite, setInfinite] = useState(true);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(autoLogin());
+  }, [dispatch]);
 
   React.useEffect(() => {
     let wait = false;
@@ -38,9 +47,7 @@ const Feed = ({ user = 0 }: { user?: number | string }) => {
 
   return (
     <div>
-      {modalPhoto && (
-        <FeedModal setModalPhoto={setModalPhoto} photo={modalPhoto} />
-      )}
+      <FeedModal />
 
       {pages.map((page) => {
         return (
@@ -49,7 +56,6 @@ const Feed = ({ user = 0 }: { user?: number | string }) => {
             user={user}
             key={page}
             page={page}
-            setModalPhoto={setModalPhoto}
           />
         );
       })}

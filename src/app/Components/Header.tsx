@@ -2,15 +2,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { UserContext } from '../UserContext';
+import { RootState } from '../store/configureStore';
 import styles from './Header.module.css';
 // import  Dogs  from 'dogs.svg';
 
 // console.log(Dogs)
 
 const Header = () => {
-  const { data } = React.useContext(UserContext);
+  const { data } = useSelector((state: RootState) => state.user);
 
   // console.log(data);
   return (

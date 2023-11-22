@@ -1,10 +1,14 @@
+'use client';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';
+import { Provider, useDispatch } from 'react-redux';
 
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import { UserStorage } from './UserContext';
+import store from './store/configureStore';
+// import { UserStorage } from './UserContext';
+
 // import { useRouter } from 'next/router';
 
 const rubik = Rubik({
@@ -25,7 +29,7 @@ export default function RootLayout({
   // const router = useRouter();
 
   return (
-    <UserStorage>
+    <Provider store={store}>
       <html lang="pt-BR">
         <body className={rubik.className}>
           <Header />
@@ -35,6 +39,6 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
-    </UserStorage>
+    </Provider>
   );
 }

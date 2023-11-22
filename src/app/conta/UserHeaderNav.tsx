@@ -1,18 +1,25 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import { NavLink, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+
 import PostarFoto from '../assets/adicionar.svg';
 import Estatisticas from '../assets/estatisticas.svg';
 import MinhasFotos from '../assets/feed.svg';
 import Sair from '../assets/sair.svg';
 import useMedia from '../Hooks/useMedia';
+import { RootState } from '../store/configureStore';
+import { userLogout } from '../store/user';
 import { UserContext } from '../UserContext';
 import styles from './UserHeaderNav.module.css';
 
 const UserHeaderNav = () => {
-  const { userLogout } = useContext(UserContext);
+  // const stado = useSelector((state: RootState) => state);
+
+  // console.log(stado);
+  const dispatch = useDispatch();
   // const [mobile, setMobile] = useState(null);
 
   const mobile = useMedia('(max-width: 40rem)');
@@ -65,7 +72,7 @@ const UserHeaderNav = () => {
           <PostarFoto />
           {mobile && 'Postar Foto'}{' '}
         </Link>
-        <button onClick={userLogout}>
+        <button onClick={() => dispatch(userLogout())}>
           <Sair />
           {mobile && 'Sair'}
         </button>

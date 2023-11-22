@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import Feed from './Components/Feed/Feed';
+import { autoLogin } from './store/user';
 // import Head from './Helper/Head'
 // import Imagem from './Components/Helper/Imagem'
 // import { stringify } from 'querystring'
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
 //   return res.json()
 // }
 
-const Home = async () => {
+const Home = () => {
   // const data = await getData()
 
   return (

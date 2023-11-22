@@ -1,13 +1,16 @@
 'use client';
 import { redirect } from 'next/navigation';
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Feed from '../Components/Feed/Feed';
-import { UserContext } from '../UserContext';
+import { RootState } from '../store/configureStore';
 import UserHeader from './UserHeader';
 
 const Conta = () => {
-  const { data } = React.useContext(UserContext);
+  const { data } = useSelector((state: RootState) => state.user);
+
+  console.log(data);
 
   if (data === null) redirect('/');
 
