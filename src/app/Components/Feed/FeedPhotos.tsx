@@ -11,7 +11,7 @@ interface FeedPhotosProps {
   setInfinite: SetInfinite;
   page: number;
   user: number | string;
-  setModalPhoto: SetModal;
+  setModalPhoto?: SetModal;
 }
 
 const FeedPhotos = ({

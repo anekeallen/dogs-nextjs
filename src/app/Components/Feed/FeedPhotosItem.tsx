@@ -6,7 +6,13 @@ import React from 'react';
 import Image from '../Helper/Imagem';
 import styles from './FeedPhotosItem.module.css';
 
-const FeedPhotosItem = ({ photo }: { photo: Photo }) => {
+const FeedPhotosItem = ({
+  photo,
+  setModalPhoto
+}: {
+  photo: Photo;
+  setModalPhoto: React.Dispatch<React.SetStateAction<Photo | null>>;
+}) => {
   const dispatch = useAppDispatch();
   function handleClick() {
     dispatch(fetchPhoto(photo.id.toString()));
