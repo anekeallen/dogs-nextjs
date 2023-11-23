@@ -22,10 +22,12 @@ const useFetch = () => {
 
         json = await response.json();
 
-        if (response.ok === false) throw new Error(response.statusText);
+        console.log(json);
+
+        if (response.ok === false) throw new Error(json.message);
       } catch (error) {
         json = null;
-        // console.log(error)
+        console.log(error);
         if (error instanceof Error) {
           setError(error.message);
         }

@@ -1,6 +1,8 @@
-export const API_URL = 'http://dogsapi.test/json';
+export const API_URL = 'http://devallen.com.br/json';
 
-export function TOKEN_POST(body: BodyInit): ReturnFunctionGet {
+export function TOKEN_POST(
+  body: BodyInit | string | { username: string; password: string }
+): ReturnFunctionGet {
   return {
     url: API_URL + '/jwt-auth/v1/token',
     options: {
@@ -52,7 +54,7 @@ export function PHOTO_POST(
   token: string
 ): ReturnFunctionGet {
   return {
-    url: API_URL + '/api/pho to',
+    url: API_URL + '/api/photo',
     options: {
       method: 'POST',
       headers: {

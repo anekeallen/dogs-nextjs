@@ -15,7 +15,7 @@ const FeedPhotosItem = ({ photo }: { photo: Photo }) => {
 
   return (
     <li className={styles.photo} onClick={handleClick}>
-      <Image src={photo.src} alt={photo.title} />
+      <Image src={'http://' + photo.src} alt={photo.title} />
       <span className={styles.visualizacao}>{photo.acessos}</span>
     </li>
   );

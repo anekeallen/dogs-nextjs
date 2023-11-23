@@ -47,25 +47,27 @@ const slice = createSlice({
 export const { fetchStarted, fetchSuccess, fetchError, resetTokenState } =
   slice.actions;
 // ação assíncrona (thunk), recebe um payload
-export const fetchToken = (user: BodyInit) => async (dispatch: AppDispatch) => {
-  // const token = window.localStorage.getItem('token');
+export const fetchToken =
+  (user: BodyInit | { username: string; password: string }) =>
+  async (dispatch: AppDispatch) => {
+    // const token = window.localStorage.getItem('token');
 
-  try {
-    dispatch(fetchStarted());
-    // config.fetchConfig é um método que retorna
-    // o url e as opções do fetch
-    const { url, options } = TOKEN_POST(user);
-    const response = await fetch(url, options);
-    const data = await response.json();
-    if (!response.ok) throw new Error(response.statusText);
-    return dispatch(fetchSuccess(data));
-  } catch (error) {
-    if (error instanceof Error) {
-      return dispatch(fetchError(error.message));
-    } else {
-      return null;
+    try {
+      dispatch(fetchStarted());
+      // config.fetchConfig é um método que retorna
+      // o url e as opções do fetch
+      const { url, options } = TOKEN_POST(user);
+      const response = await fetch(url, options);
+      const data = await response.json();
+      if (!response.ok) throw new Error(response.statusText);
+      return dispatch(fetchSuccess(data));
+    } catch (error) {
+      if (error instanceof Error) {
+        return dispatch(fetchError(error.message));
+      } else {
+        return null;
+      }
     }
-  }
-};
+  };
 
 export default slice.reducer;
