@@ -109,7 +109,7 @@ export function PHOTO_DELETE(
 
 export function COMMENT_POST(
   id: number | string | string[],
-  body: BodyInit
+  body: string | BodyInit | { comment: string }
 ): ReturnFunctionGet {
   return {
     url: API_URL + `/api/comment/${id}`,

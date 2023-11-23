@@ -23,7 +23,7 @@ const Header = () => {
 
         {data ? (
           <Link className={styles.login} href="/conta">
-            {data.nome}
+            {data && data.nome}
           </Link>
         ) : (
           <Link className={styles.login} href="/login">
