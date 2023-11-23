@@ -1,5 +1,6 @@
 'use client';
 
+import { useAppDispatch } from '@/app/store/hooks';
 import { autoLogin } from '@/app/store/user';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,7 +14,7 @@ const Feed = ({ user = 0 }: { user?: number | string }) => {
   const [pages, setPages] = useState([1]);
   const [infinite, setInfinite] = useState(true);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     dispatch(autoLogin());
