@@ -17,7 +17,7 @@ const slice = createSlice({
   initialState: {
     loading: false,
     data: {
-      token: window.localStorage.getItem('token') || null
+      token: window?.localStorage.getItem('token') || null
     },
     error: null
   },
