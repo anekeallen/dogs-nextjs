@@ -9,6 +9,11 @@ import { AppDispatch } from './configureStore';
 //   name: 'photo',
 //   fetchConfig: (id: string) => PHOTO_GET(id)
 // });
+const tokenFromLocalStorage =
+  typeof window !== 'undefined'
+    ? window.localStorage.getItem('token') || null
+    : null;
+
 const slice = createSlice({
   // define um nome específico para o slice
   name: 'token',
@@ -17,7 +22,7 @@ const slice = createSlice({
   initialState: {
     loading: false,
     data: {
-      token: window?.localStorage.getItem('token') || null
+      token: tokenFromLocalStorage
     },
     error: null
   },
