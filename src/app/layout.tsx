@@ -16,10 +16,10 @@ const rubik = Rubik({
   display: 'swap'
 });
 
-export const metadata: Metadata = {
-  title: 'Dogs',
-  description: ''
-};
+// export const metadata: Metadata = {
+//   title: 'Dogs',
+//   description: ''
+// };
 
 export default function RootLayout({
   children
