@@ -10,7 +10,6 @@ Bem-vindo ao Dogstagram Next, o lugar perfeito para compartilhar e explorar as m
 
 - **Comentários e Reações:** Deixe comentários carinhosos e compartilhe sua paixão pelos cachorros com outros amantes de cães.
 
-
 ## Como Iniciar
 
 1. Clone este repositório.
@@ -18,3 +17,8 @@ Bem-vindo ao Dogstagram Next, o lugar perfeito para compartilhar e explorar as m
 3. Inicie o servidor de desenvolvimento com `npm run dev`.
 
 Pronto para se perder no mundo encantador dos cachorros? 🐶💖
+
+## Acesso ao Dogstagram Next
+
+Acesse o Dogstagram Next [aqui](https://dogs-nextjs-hazel.vercel.app/). Por favor, note que a API deste projeto é feita em HTTP. Se o navegador bloquear, certifique-se de permitir a conexão para desfrutar plenamente do Dogstagram Next.
+
