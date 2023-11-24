@@ -11,6 +11,7 @@ import MinhasFotos from '../assets/feed.svg';
 import Sair from '../assets/sair.svg';
 import useMedia from '../Hooks/useMedia';
 import { RootState } from '../store/configureStore';
+import { useAppDispatch } from '../store/hooks';
 import { userLogout } from '../store/user';
 import { UserContext } from '../UserContext';
 import styles from './UserHeaderNav.module.css';
@@ -19,7 +20,9 @@ const UserHeaderNav = () => {
   // const stado = useSelector((state: RootState) => state);
 
   // console.log(stado);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
   // const [mobile, setMobile] = useState(null);
 
   const mobile = useMedia('(max-width: 40rem)');

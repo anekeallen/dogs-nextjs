@@ -17,7 +17,7 @@ const Conta = () => {
   return (
     <section className="container">
       <UserHeader />
-      <Feed user={data.id} />
+      <Feed user={data['id']} />
     </section>
   );
 };

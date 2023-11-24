@@ -36,7 +36,9 @@ export function USER_GET(token: string): ReturnFunctionGet {
     }
   };
 }
-export function USER_POST(body: BodyInit): ReturnFunctionGet {
+export function USER_POST(
+  body: BodyInit | { username: string; password: string; email: string }
+): ReturnFunctionGet {
   return {
     url: API_URL + '/api/user',
     options: {

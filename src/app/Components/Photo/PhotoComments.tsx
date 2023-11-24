@@ -8,7 +8,7 @@ import PhotoCommentsForm from './PhotoCommentsForm';
 
 interface PhotoCommentsProps {
   id: number;
-  comments: Comment[];
+  comments: Comment[] | null;
   single: boolean | undefined;
 }
 
@@ -31,7 +31,7 @@ const PhotoComments = (props: PhotoCommentsProps) => {
         ref={commentsSection}
         className={`${styles.comments} ${props.single ? styles.single : ''}`}
       >
-        {comments.map((comment) => (
+        {comments?.map((comment) => (
           <li key={comment.comment_ID}>
             <b>{comment.comment_author}: </b>
             <span>{comment.comment_content}</span>

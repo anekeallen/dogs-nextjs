@@ -61,13 +61,15 @@ export const fetchUser = (token: string) => async (dispatch: AppDispatch) => {
   }
 };
 // ação assíncrona (thunk), recebe um payload
-export const userLogin = (user: BodyInit) => async (dispatch: AppDispatch) => {
-  const action = await dispatch(fetchToken(user));
-  if (action?.payload.token) {
-    window.localStorage.setItem('token', action.payload.token);
-    await dispatch(fetchUser(action?.payload?.token));
-  }
-};
+export const userLogin =
+  (user: BodyInit | { username: string; password: string }) =>
+  async (dispatch: AppDispatch) => {
+    const action = await dispatch(fetchToken(user));
+    if (action?.payload.token) {
+      window.localStorage.setItem('token', action.payload.token);
+      await dispatch(fetchUser(action?.payload?.token));
+    }
+  };
 export const userLogout = () => async (dispatch: AppDispatch) => {
   dispatch(resetUserState());
   dispatch(resetTokenState());
@@ -77,11 +79,15 @@ export const autoLogin =
   () => async (dispatch: AppDispatch, getState: () => RootState) => {
     const { token } = getState();
     if (token?.data?.token) {
-      const { type } = await dispatch(fetchUser(token.data.token));
+      // const { type } = await dispatch(fetchUser(token.data.token));
+      const result = await dispatch(fetchUser(token.data.token));
 
-      if (type === fetchError.type) {
+      if (result && result.type === fetchError.type) {
         dispatch(userLogout());
       }
+      // if (type === fetchError.type) {
+      //   dispatch(userLogout());
+      // }
     }
     // dispatch(resetTokenState());
   };

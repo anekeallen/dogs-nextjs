@@ -12,7 +12,7 @@ import styles from './PhotoCommentsForm.module.css';
 
 interface PhotoDeleteProps {
   id: string | number;
-  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+  setComments: React.Dispatch<React.SetStateAction<Comment[]>> | null;
   single: boolean | undefined;
 }
 
@@ -29,7 +29,7 @@ const PhotoCommentsForm: React.FC<PhotoDeleteProps> = ({
 
     const { url, options } = COMMENT_POST(id, { comment });
     const { response, json } = await request(url, options);
-    if (response && response.ok) {
+    if (response && response.ok && setComments) {
       setComment('');
       setComments((comments) => [...comments, json]);
     }

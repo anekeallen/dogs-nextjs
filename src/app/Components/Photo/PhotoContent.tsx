@@ -7,7 +7,6 @@ import React, { useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { UserContext } from '../../UserContext';
 import Image from '../Helper/Imagem';
 import PhotoComments from './PhotoComments';
 import styles from './PhotoContent.module.css';
@@ -24,39 +23,58 @@ const PhotoContent = ({
   // const { photo, comments } = data;
   const dispatch = useAppDispatch();
 
-  const { photo, comments } = useSelector(
-    (state: RootState) => state.photo.data
-  );
+  // const { photo, comments } = useSelector(
+  //   (state: RootState) => state.photo.data
+  // );
 
+  const photoData = useSelector((state: RootState) => state.photo.data);
+
+  // Verifica se photoData não é null antes de acessar suas propriedades
+  const { photo, comments } = photoData || { photo: null, comments: null };
+
+  const src = photo ? `http://${photo['src']}` : '';
+  const alt = photo ? photo['title'] : '';
+  const id = photo ? photo['id'] : 0;
+  const author = photo ? photo['author'] : '';
+  const acessos = photo ? photo['acessos'] : '';
+  const peso = photo ? photo['peso'] : '';
+  const title = photo ? photo['title'] : '';
+  const idade = photo ? photo['idade'] : '';
+
+  console.log(idade);
+  // const photo_data = useSelector(
+  //   (state: RootState) => state.photo.data
+  // );
+  console.log(photo);
   // const dispatch = useDispatch();
 
   return (
     <div className={`${styles.photo} ${single ? styles.single : ''}`}>
       <div className={styles.img}>
-        <Image src={'http://' + photo.src} alt={photo.title} />
+        <Image src={src} alt={alt} />
       </div>
       <div className={styles.detalhes}>
         <div>
           <p className={styles.autor}>
-            {user.data && user.data.username === photo.author ? (
-              <PhotoDelete id={photo.id} />
+            {user.data && user.data['username'] === author ? (
+              <PhotoDelete id={id} />
             ) : (
-              <Link href={`/perfil/${photo.author}`}>@{photo.author}</Link>
+              <Link href={`/perfil/${author}`}>@{author}</Link>
             )}
-            <span className={styles.visualizacoes}>{photo.acessos}</span>
+            <span className={styles.visualizacoes}>{acessos}</span>
           </p>
           <h1 className="title">
-            <Link href={`/foto/${photo.id}`}>{photo.title}</Link>
+            <Link href={`/foto/${id}`}>{title}</Link>
           </h1>
 
           <ul className={styles.atributos}>
-            <li> {photo.peso} Kg</li>
-            <li> {photo.idade} anos</li>
+            <li> {peso} Kg</li>
+            <li> {idade} anos</li>
           </ul>
         </div>
       </div>
 
-      <PhotoComments single={single} id={photo.id} comments={comments} />
+      <PhotoComments single={single} id={id} comments={comments} />
     </div>
   );
 };

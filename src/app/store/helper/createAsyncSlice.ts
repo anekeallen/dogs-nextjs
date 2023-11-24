@@ -46,7 +46,9 @@ const createAsyncSlice = (config: AsyncSliceConfig) => {
       loading: false,
       data: null,
       error: null,
-      ...config.initialState
+      ...(config.initialState && typeof config.initialState === 'object'
+        ? config.initialState
+        : {})
     },
     // lista de reducers padrões
     reducers: {
